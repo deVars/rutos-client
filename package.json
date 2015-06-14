@@ -1,0 +1,23 @@
+{
+  "name": "rutos-client",
+  "version": "0.1.0",
+  "description": "client for the rutos server",
+  "author": "Roseller Velicaria, Jr. <r.velicaria.jr@gmail.com>",
+  "contributors": [],
+  "bin": {},
+  "scripts": {},
+  "main": {},
+  "repository": {},
+  "bugs": {},
+  "keywords": [
+    "rutos",
+    "angular-material",
+    "npm"
+  ],
+  "dependencies": {},
+  "devdependencies": {},
+  "preferGlobal": false,
+  "private": true,
+  "publishConfig": {},
+  "license": "Apache v2"
+}
