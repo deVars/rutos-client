@@ -1,13 +1,14 @@
 'use strict';
 
-var app = angular.module('rutosClientApp', []);
+var app = angular.module('rutosClientApp', ['ngMaterial']);
 
-app.controller('mainController', ['$scope', function($scope) {
+app.config(function($mdThemingProvider) {
+	$mdThemingProvider.theme('default')
+		.primaryPalette('blue')
+		.accentPalette('orange')
+		.warnPalette('red');
+})
 
-	}])
-	.directive('rutosClient', function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'views/directives/rutos_client_view.html'
-		};
-	});
+.controller('mainController', ['$scope', function($scope) {
+
+}]);
