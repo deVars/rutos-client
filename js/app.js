@@ -10,6 +10,5 @@ app.config(function($mdThemingProvider) {
 		.warnPalette('red');
 })
 
-.controller('mainController', ['$scope', function($scope) {
-
-}]);
+.controller('mainController', [
+	function() {}]);

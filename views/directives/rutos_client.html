@@ -1,20 +1,20 @@
 <div>
-	<md-toolbar >
+	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<span class="md-title">dvScrape</span>
 			<span flex></span>
 			<span>
-				<md-button class="md-icon-button {{filter_panel_enabled ? 'md-accent' : ''}}" ng-click="toggle_filter()">
+				<md-button class="md-icon-button {{filter_panel_enabled ? 'md-accent' : ''}}" ng-click="toggle_filter(this)" aria-label="filter">
 					<div class="subber-face"><i class="fa fa-filter"></i></div>
 				</md-button>
-				<md-button class="md-icon-button" ng-click="">
+				<md-button class="md-icon-button" ng-click="" aria-label="sign-in">
 					<div class="subber-face"><i class="fa fa-sign-in"></i></div>
 				</md-button>
 			</span>
 		</div>
 	</md-toolbar>
 	<div layout="row" ng-show="filter_panel_enabled">
-		<md-select ng-model="filter_subber" md-on-open="load_subbers()" aria-label="subber" flex="15">
+		<md-select ng-model="filter_subber" md-on-open="load_subbers(this)" aria-label="subber" flex="15">
 			<md-select-label flex>{{filter_subber ? filter_subber : 'filter by subber'}}</md-select-label>
 			<md-option ng-repeat="record in subbers" value="{{record.subber}}">
 				{{record.subber}}
