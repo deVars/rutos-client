@@ -1,11 +1,24 @@
-<md-toolbar>
-	<div class="md-toolbar-tools">
-		Sign-In
-	</div>
-</md-toolbar>
-<md-content>
-	<section layout="row" layout-align="right end">
-		<md-button>Cancel</md-button>
-		<md-button class="md-primary">Sign In</md-button>
-	</section>
-</md-content>
+<md-dialog>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			Sign-In
+		</div>
+	</md-toolbar>
+	<md-content>
+		<section layout-padding>
+			<md-input-container>
+				<label>user name</label>
+				<input type="text" ng-model="username"/>
+			</md-input-container>
+			<md-input-container>
+				<label>password</label>
+				<input type="password" ng-model="password"/>
+			</md-input-container>
+			</md-input-container>
+		</section>
+		<section layout="row" layout-align="end end">
+			<md-button ng-click="cancel()">Cancel</md-button>
+			<md-button class="md-primary" ng-click="signIn()">Sign In</md-button>
+		</section>
+	</md-content>
+</md-dialog>

@@ -26,7 +26,8 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 					deferred.resolve(data);
 				})
 				.error(function(data, status, headers, config) {
-					deferred.reject([]);
+					status.message('error getting scrapes');
+					deferred.reject(status);
 				});
 
 			return deferred.promise;
@@ -44,7 +45,8 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 					deferred.resolve(data);
 				})
 				.error(function(data, status, headers, config) {
-					deferred.reject([]);
+					status.message = 'error getting subbers';
+					deferred.reject(status);
 				});
 
 			return deferred.promise;
@@ -63,5 +65,5 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 		get_subbers: get_subbers,
 		get_title: get_title,
 		all: all
-	}
+	};
 }]);
