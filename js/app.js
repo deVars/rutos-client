@@ -3,9 +3,10 @@
 var app = angular.module('rutosClientApp', ['ngMaterial']);
 
 app.config(function($mdThemingProvider) {
+	// $mdThemingProvider.theme('content-dark', 'default').dark();
 	$mdThemingProvider.theme('default')
-		.primaryPalette('blue')
-		.accentPalette('orange')
+		.primaryPalette('indigo')
+		.accentPalette('deep-orange')
 		.warnPalette('red');
 })
 

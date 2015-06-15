@@ -1,0 +1,43 @@
+.push-36-right {
+	margin-right: 36px;
+}
+
+.push-16-down {
+	margin-top: 16px;
+}
+
+.content-space {
+	height: 500px;
+	padding: 8px 10px 24px 16px;
+}
+
+.subber-face {
+	font-size: x-large;
+}
+
+.white-font {
+	color: #f5f5f5;
+}
+
+.subber-text {
+	font-size: 12px;
+	color: #303030;
+}
+
+.feature-text {
+	font-size: 10px;
+	color: #424242;
+}
+
+.title-text {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.was-downloaded-false {
+	color: #424242;
+}
+
+.was-downloaded-true {
+	color: orange;
+}

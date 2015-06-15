@@ -21,7 +21,7 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 				paramStr = '?' + params.join('&');
 			}
 
-			$http.get(base_url + 'scrapes/get?' + paramStr)
+			$http.get(base_url + 'scrapes/get' + paramStr)
 				.success(function(data, status, headers, config) {
 					deferred.resolve(data);
 				})
@@ -36,8 +36,22 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 			return _get(config);
 		},
 
+		get_subbers = function() {
+			var deferred = $q.defer();
+
+			$http.get(base_url + 'scrapes/get/subbers')
+				.success(function(data, status, headers, config) {
+					deferred.resolve(data);
+				})
+				.error(function(data, status, headers, config) {
+					deferred.reject([]);
+				});
+
+			return deferred.promise;
+		},
+
 		get_title = function(title) {
-			return _get({title: title})
+			return _get({title: title});
 		},
 
 		all = function() {
@@ -46,6 +60,7 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 
 	return {
 		get: get,
+		get_subbers: get_subbers,
 		get_title: get_title,
 		all: all
 	}
