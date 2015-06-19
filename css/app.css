@@ -3,11 +3,15 @@
 }
 
 .push-16-down {
-	margin-top: 16px;
+	margin: 10px 12px 10px 0px;
 }
 
 .push-30-down {
 	margin-top: 30px;
+}
+
+.normal-line-height {
+	line-height: normal;
 }
 
 .content-space {

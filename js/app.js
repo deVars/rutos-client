@@ -10,5 +10,20 @@ app.config(function($mdThemingProvider) {
 		.warnPalette('red');
 })
 
-.controller('mainController', [
-	function() {}]);
+.controller('mainController', ['$scope', function($scope) {
+	var toggle_filter = function() {
+			$scope.config.filter_panel_enabled = !$scope.config.filter_panel_enabled;
+		};
+
+	$scope.toggle_filter = toggle_filter;
+
+	$scope.config = {
+		filter_panel_enabled: false,
+		is_logged_in: false,
+		user_id: undefined
+	};
+	
+	$scope.data = {
+		scrapes: []
+	};
+}]);

@@ -4,39 +4,39 @@
 			<span class="md-title">dvScrape</span>
 			<span flex></span>
 			<span>
-				<md-button class="md-icon-button {{filter_panel_enabled ? 'md-accent' : ''}}" ng-click="toggle_filter(this)" aria-label="filter">
+				<md-button class="md-icon-button {{config.filter_panel_enabled ? 'md-accent' : ''}}" ng-click="toggle_filter()" aria-label="filter">
 					<div class="subber-face"><i class="fa fa-filter"></i></div>
 				</md-button>
-				<md-button class="md-icon-button" ng-show="!is_logged_in" ng-click="show_login_dialog(this, $event)" aria-label="sign-in">
+				<md-button class="md-icon-button" ng-show="!config.is_logged_in" ng-click="show_login_dialog(this, $event)" aria-label="sign-in">
 					<div class="subber-face"><i class="fa fa-sign-in"></i></div>
 				</md-button>
-				<md-button class="md-icon-button" ng-show="is_logged_in" ng-click="show_login_dialog(this, $event)" aria-label="sign-in">
+				<md-button class="md-icon-button" ng-show="config.is_logged_in" ng-click="show_login_dialog(this, $event)" aria-label="sign-in">
 					<div class="subber-face"><i class="fa fa-sign-out"></i></div>
 				</md-button>
 			</span>
 		</div>
 	</md-toolbar>
-	<div layout="row" ng-show="filter_panel_enabled">
-		<md-select ng-model="filter_subber" md-on-open="load_subbers(this)" aria-label="subber" flex="15">
-			<md-select-label flex>{{filter_subber ? filter_subber : 'filter by subber'}}</md-select-label>
+	<div ng-controller="ScrapeFilterController" layout="row" ng-show="config.filter_panel_enabled">
+		<md-select ng-model="filter.subber" md-on-open="load_subbers()" aria-label="subber" flex="15">
+			<md-select-label flex>{{filter.subber ? filter.subber : 'filter by subber'}}</md-select-label>
 			<md-option ng-repeat="record in subbers" value="{{record.subber}}">
 				{{record.subber}}
 			</md-option>
 		</md-select>
 		<md-input-container flex>
 			<label>filter by title</label>
-  			<input ng-model="filter_title">
+  			<input ng-model="filter.title">
 		</md-input-container>
 	</div>
 	<md-content layout-padding class="content-space">
 		<md-list>
-			<md-list-item class="md-3-line" ng-repeat="scrape in scrapes">
+			<md-list-item c-class="md-3-line" ng-repeat="scrape in data.scrapes" ng-click="console.log('yay!');">
 
 				<md-button md-no-ink class="md-fab push-16-down" style="background-color: {{color_from_letter(scrape.subber.charCodeAt(0))}}">
 					<div class="subber-face white-font">{{scrape.subber.substr(0,1)}}</div>
 				</md-button>
 				
-				<div class="md-list-item-text">
+				<div class="md-list-item-text normal-line-height">
 					<div class="subber-text">{{scrape.subber}}</div>
 					<div class="title-text">{{scrape.title}}</div>
 					<div class="feature-text">
