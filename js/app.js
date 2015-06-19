@@ -10,21 +10,22 @@ app.config(function($mdThemingProvider) {
 		.warnPalette('red');
 })
 
-.controller('mainController', ['$scope', function($scope) {
+.controller('mainController', ['userService', '$mdDialog', '$mdToast', '$scope', 
+function(userService, $mdDialog, $mdToast, $scope) {
 	var show_login_dialog = function($scope, ev) {
-			signInDialogTemplate['targetEvent'] = ev;
+		signInDialogTemplate['targetEvent'] = ev;
 
-			$mdDialog.show(signInDialogTemplate)
-				.then(function(signInConfig) {
-					userService.login(signInConfig)
-						.then(function(data) {
-							$scope.config.is_logged_in = true;
-							$scope.config.user_id = data.user_id;
-							$mdToast.show($mdToast.simple()
-								.position('bottom right')
-								.content('You have successfully signed in!'));
-						}, output_error);
-				}, output_error);
+		$mdDialog.show(signInDialogTemplate)
+			.then(function(signInConfig) {
+				userService.login(signInConfig)
+					.then(function(data) {
+						$scope.config.is_logged_in = true;
+						$scope.config.user_id = data.user_id;
+						$mdToast.show($mdToast.simple()
+							.position('bottom right')
+							.content('You have successfully signed in!'));
+					}, output_error);
+			}, output_error);
 		},
 
 		signInController = function($scope, $mdDialog) {

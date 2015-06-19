@@ -1,7 +1,6 @@
 'use strict';
 
-app.directive('rutosClient', ['scrapeService', 'userService', '$mdDialog', '$mdToast', 
-		function(scrapeService, userService, $mdDialog, $mdToast) {
+app.directive('rutosClient', ['scrapeService', function(scrapeService) {
 	var color_from_letter = function(index) {
 			var colors = ['#f44336', '#e91e63', '#9c27b0', '#67a3b7',
 				'#7986CB', '#2196F3', '#039BE5', '#00BCD4', '#009688', 
