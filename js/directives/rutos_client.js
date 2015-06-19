@@ -1,6 +1,7 @@
 'use strict';
 
-app.directive('rutosClient', ['scrapeService', function(scrapeService) {
+app.directive('rutosClient', ['scrapeService', '$mdDialog', '$scope', 
+function(scrapeService, $mdDialog, $scope) {
 	var color_from_letter = function(index) {
 			var colors = ['#f44336', '#e91e63', '#9c27b0', '#67a3b7',
 				'#7986CB', '#2196F3', '#039BE5', '#00BCD4', '#009688', 
@@ -8,6 +9,16 @@ app.directive('rutosClient', ['scrapeService', function(scrapeService) {
 				'#795548', '#757575', '#607D8B'];
 
 			return colors[index % colors.length];
+		},
+
+		entry_info_controller = function($scope, $mdDialog) {
+			$scope.hide = function() {
+				$mdDialog.hide();
+			};
+
+			$scope.cancel = function() {
+				$mdDialog.cancel();
+			}
 		},	
 		
 		controller = function($scope, $mdDialog) {
@@ -17,6 +28,11 @@ app.directive('rutosClient', ['scrapeService', function(scrapeService) {
 			scrapeService.all().then(function(data) {
 				$scope.data.scrapes = data;
 			});
+		},
+		
+		entry_info_template = {
+			templateUrl: 'views/dialogs/entry_info.html',
+			controller: entry_info_controller
 		};
 
 	return {

@@ -13,11 +13,11 @@ app.config(function($mdThemingProvider) {
 .controller('mainController', ['userService', '$mdDialog', '$mdToast', '$scope', 
 function(userService, $mdDialog, $mdToast, $scope) {
 	var show_login_dialog = function($scope, ev) {
-		signInDialogTemplate['targetEvent'] = ev;
+		sign_in_dialog_template['targetEvent'] = ev;
 
-		$mdDialog.show(signInDialogTemplate)
-			.then(function(signInConfig) {
-				userService.login(signInConfig)
+		$mdDialog.show(sign_in_dialog_template)
+			.then(function(sign_in_config) {
+				userService.login(sign_in_config)
 					.then(function(data) {
 						$scope.config.is_logged_in = true;
 						$scope.config.user_id = data.user_id;
@@ -28,7 +28,7 @@ function(userService, $mdDialog, $mdToast, $scope) {
 			}, output_error);
 		},
 
-		signInController = function($scope, $mdDialog) {
+		sign_in_controller = function($scope, $mdDialog) {
 			$scope.hide = function() {
 				$mdDialog.hide();
 			};
@@ -65,9 +65,9 @@ function(userService, $mdDialog, $mdToast, $scope) {
 			}
 		},
 		
-		signInDialogTemplate = {
-			templateUrl: 'views/sign_in.html',
-			controller: signInController
+		sign_in_dialog_template = {
+			templateUrl: 'views/dialogs/sign_in.html',
+			controller: sign_in_controller
 		};
 
 	$scope.show_login_dialog = show_login_dialog;
