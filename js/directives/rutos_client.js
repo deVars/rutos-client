@@ -13,65 +13,11 @@ app.directive('rutosClient', ['scrapeService', 'userService', '$mdDialog', '$mdT
 		
 		controller = function($scope, $mdDialog) {
 			$scope.color_from_letter = color_from_letter;
-			$scope.show_login_dialog = show_login_dialog;	
+				
 
 			scrapeService.all().then(function(data) {
 				$scope.data.scrapes = data;
 			});
-		},
-
-		signInController = function($scope, $mdDialog) {
-			$scope.hide = function() {
-				$mdDialog.hide();
-			};
-
-			$scope.cancel = function() {
-				$mdDialog.cancel();
-			}
-
-			$scope.signIn = function() {
-				if (angular.isUndefined($scope.username) ||
-						angular.isUndefined($scope.password)) {
-					$mdDialog.cancel();
-				}
-
-				var digest = CryptoJS.SHA512($scope.password)
-					.toString(CryptoJS.enc.Base64);
-
-				$mdDialog.hide({
-					username: $scope.username,
-					password: digest
-				});
-			}
-		},
-
-		show_login_dialog = function($scope, ev) {
-			signInDialogTemplate['targetEvent'] = ev;
-
-			$mdDialog.show(signInDialogTemplate)
-				.then(function(signInConfig) {
-					userService.login(signInConfig)
-						.then(function(data) {
-							$scope.config.is_logged_in = true;
-							$scope.config.user_id = data.user_id;
-							$mdToast.show($mdToast.simple()
-								.position('top right')
-								.content('You have successfully signed in!'));
-						}, output_error);
-				}, output_error);
-		},
-
-		signInDialogTemplate = {
-			templateUrl: 'views/sign_in.html',
-			controller: signInController
-		},
-
-		output_error = function(data) {
-			if (angular.isUndefined(data)) {
-				console.error('uncaught error');
-			} else {
-				console.error(data);
-			}
 		};
 
 	return {
