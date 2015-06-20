@@ -13,19 +13,19 @@ app.config(function($mdThemingProvider) {
 .controller('mainController', ['userService', '$mdDialog', '$mdToast', '$scope', 
 function(userService, $mdDialog, $mdToast, $scope) {
 	var show_login_dialog = function($scope, ev) {
-		sign_in_dialog_template['targetEvent'] = ev;
+			sign_in_dialog_template['targetEvent'] = ev;
 
-		$mdDialog.show(sign_in_dialog_template)
-			.then(function(sign_in_config) {
-				userService.login(sign_in_config)
-					.then(function(data) {
-						$scope.config.is_logged_in = true;
-						$scope.config.user_id = data.user_id;
-						$mdToast.show($mdToast.simple()
-							.position('bottom right')
-							.content('You have successfully signed in!'));
-					}, output_error);
-			}, output_error);
+			$mdDialog.show(sign_in_dialog_template)
+				.then(function(sign_in_config) {
+					userService.login(sign_in_config)
+						.then(function(data) {
+							$scope.config.is_logged_in = true;
+							$scope.config.user_id = data.user_id;
+							$mdToast.show($mdToast.simple()
+								.position('bottom right')
+								.content('You have successfully signed in!'));
+						}, output_error);
+				}, output_error);
 		},
 
 		sign_in_controller = function($scope, $mdDialog) {

@@ -52,6 +52,21 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 			return deferred.promise;
 		},
 
+		get_url = function(id) {
+			var deferred = $q.defer();
+
+			$http.get(base_url + 'scrapes/get/link/' + id)
+				.success(function(data, status, headers, config) {
+					deferred.resolve(data);
+				})
+				.error(function(data, status, headers, config) {
+					status.message = 'error getting subbers';
+					deferred.reject(status);
+				});
+
+			return deferred.promise;
+		},
+
 		get_title = function(title) {
 			return _get({title: title});
 		},

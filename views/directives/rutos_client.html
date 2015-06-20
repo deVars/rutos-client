@@ -30,7 +30,7 @@
 	</div>
 	<md-content layout-padding class="content-space">
 		<md-list>
-			<md-list-item c-class="md-3-line" ng-repeat="scrape in data.scrapes" ng-click="show_entry_info($event)">
+			<md-list-item c-class="md-3-line" ng-repeat="scrape in data.scrapes" ng-click="show_entry_info(scrape.id, scrape.subber, scrape.title, scrape.was_downloaded, config.is_logged_in, $event)">
 
 				<md-button md-no-ink class="md-fab push-16-down" style="background-color: {{color_from_letter(scrape.subber.charCodeAt(0))}}">
 					<div class="subber-face white-font">{{scrape.subber.substr(0,1)}}</div>

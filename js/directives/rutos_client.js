@@ -11,7 +11,14 @@ function(scrapeService, $mdDialog) {
 			return colors[index % colors.length];
 		},
 
-		entry_info_controller = function($scope, $mdDialog) {
+		entry_info_controller = function($scope, $mdDialog, subber, title, 
+				was_downloaded, is_logged_in) {
+			$scope.entry = {
+				subber: subber,
+				title: title,
+				is_logged_in: is_logged_in
+			}
+			
 			$scope.hide = function() {
 				$mdDialog.hide();
 			};
@@ -21,10 +28,23 @@ function(scrapeService, $mdDialog) {
 			}
 		},
 
-		show_entry_info = function(ev) {
-			entry_info_template.targetEvent = ev;
-			console.log('Hello!');
-			$mdDialog.show(entry_info_template);
+		show_entry_info = function(id, subber, title, was_downloaded, 
+				is_logged_in ,ev) {
+			var entry_info = {};
+
+			angular.copy(entry_info_template, entry_info); 
+			entry_info.locals = {
+				subber: subber,
+				title: title,
+				was_downloaded: was_downloaded,
+				is_logged_in: is_logged_in
+			}
+			entry_info.targetEvent = ev;
+			
+			$mdDialog.show(entry_info)
+				.finally(function() {
+					entry_info = undefined;
+				});
 		},
 		
 		controller = function($scope, $mdDialog) {

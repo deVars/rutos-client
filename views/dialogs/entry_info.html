@@ -12,13 +12,19 @@
 			</md-input-container>
 			<md-input-container>
 				<label>title</label>
-				<input type="text" ng-model="entry.name" disabled/>
+				<input type="text" ng-model="entry.title" disabled/>
 			</md-input-container>
-			</md-input-container>
+			<div class="entry-info-warning" layout="row" ng-show="entry.was_downloaded">
+				<div flex offset="20">
+					<i class="fa fa-exclamation-triangle"></i>
+					This has been downloaded.
+				</div>
+			</div>
 		</section>
 		<section layout="row" layout-align="end end">
 			<md-button ng-click="cancel()">Cancel</md-button>
-			<md-button class="md-primary" ng-click="hide()">Got it!</md-button>
+			<md-button class="md-primary" ng-click="hide()">Download</md-button>
+			<md-button class="md-accent" ng-show="entry.is_logged_in" ng-click="hide()">Download to Server</md-button>
 		</section>
 	</md-content>
 </md-dialog>
