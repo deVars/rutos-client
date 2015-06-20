@@ -79,6 +79,7 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 		get: get,
 		get_subbers: get_subbers,
 		get_title: get_title,
+		get_url: get_url,
 		all: all
 	};
 }]);

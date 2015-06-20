@@ -32,7 +32,12 @@ function(scrapeService, $mdDialog) {
 				is_logged_in ,ev) {
 			var entry_info = {};
 
-			angular.copy(entry_info_template, entry_info); 
+			scrapeService.get_url(id)
+				.then(function(data) {
+					console.log(data);
+				});
+
+			angular.copy(entry_info_template, entry_info);
 			entry_info.locals = {
 				subber: subber,
 				title: title,
