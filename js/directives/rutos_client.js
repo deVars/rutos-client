@@ -19,11 +19,17 @@ function(scrapeService, $mdDialog) {
 			$scope.cancel = function() {
 				$mdDialog.cancel();
 			}
-		},	
+		},
+
+		show_entry_info = function(ev) {
+			entry_info_template.targetEvent = ev;
+			console.log('Hello!');
+			$mdDialog.show(entry_info_template);
+		},
 		
 		controller = function($scope, $mdDialog) {
 			$scope.color_from_letter = color_from_letter;
-				
+			$scope.show_entry_info = show_entry_info;				
 
 			scrapeService.all().then(function(data) {
 				$scope.data.scrapes = data;
