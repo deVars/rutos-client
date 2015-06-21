@@ -1,7 +1,7 @@
 'use strict';
 
 app.factory('scrapeService', ['$http', '$q', function($http, $q) {
-	var base_url = 'http://localhost/scrapeserv/',
+	var base_url = '/scrapeserv/',
 
 		_get = function(config) {
 			var params = [],

@@ -1,7 +1,7 @@
 'use strict';
 
 app.factory('userService', ['$http', '$q', function($http, $q) {
-	var base_url = 'http://localhost/scrapeserv/',
+	var base_url = '/scrapeserv/',
 		login = function(config) {
 			var deferred = $q.defer();
 
