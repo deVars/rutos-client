@@ -11,13 +11,15 @@ function(scrapeService, $mdDialog) {
 			return colors[index % colors.length];
 		},
 
-		entry_info_controller = function($scope, $mdDialog, subber, title, 
-				was_downloaded, is_logged_in) {
+		entry_info_controller = function($scope, $mdDialog, id, subber, title, 
+				was_downloaded, is_logged_in, link) {
 			$scope.entry = {
+				id: id,
 				subber: subber,
 				title: title,
-				is_logged_in: is_logged_in
-			}
+				is_logged_in: is_logged_in,
+				link: link
+			};
 			
 			$scope.hide = function() {
 				$mdDialog.hide();
@@ -30,19 +32,22 @@ function(scrapeService, $mdDialog) {
 
 		show_entry_info = function(id, subber, title, was_downloaded, 
 				is_logged_in ,ev) {
-			var entry_info = {};
+			var entry_info = {},
+				entry_link = '';
 
 			scrapeService.get_url(id)
 				.then(function(data) {
-					console.log(data);
+					entry_link = data.url;
 				});
 
 			angular.copy(entry_info_template, entry_info);
 			entry_info.locals = {
+				id: id,
 				subber: subber,
 				title: title,
 				was_downloaded: was_downloaded,
-				is_logged_in: is_logged_in
+				is_logged_in: is_logged_in,
+				link: entry_link
 			}
 			entry_info.targetEvent = ev;
 			
