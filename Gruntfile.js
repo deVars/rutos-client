@@ -29,21 +29,22 @@ module.exports = function(grunt) {
 		},
 		htmlmin: {
 			options: {
+				newer: false,
 				removeComments: true
 			},
-			file: {
+			files: {
 				options: {
 					collapseWhitespace: true,
 				},
 				files: {
-					'release/views/': ['views/**/*.html'],
-					// dest: 'release/views/'	
+					src: 'views/**/*.html',
+					dest: 'release/'
 				}
 			}
 		},
 		cssmin: {
 			options: {},
-			target: {
+			default_target: {
 				files: {
 					'release/css/app.min.css': ['css/app.css']
 				}
@@ -57,17 +58,32 @@ module.exports = function(grunt) {
 			},
 			default_target: {
 				files: {
-					'release/js/app.min.js': ['js/**/*.js', 'js/app.js']
+					'release/js/app.min.js': [
+						'js/app.js',
+						'js/services/*.js', 
+						'js/controllers/*.js', 
+						'js/directives/*.js'
+					]
 				}
 			}
 		}
 		
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-htmlmin');
+	grunt.registerTask('wiring', function() {
+		var fs = require('fs'),
+			path = require('path');
+
+		fs.symlink(path.resolve(__dirname, 'bower_components'), path.resolve(__dirname, 'release', 'bower_components'), 'dir');
+		fs.symlink(path.resolve(__dirname, 'js', 'packages'), path.resolve(__dirname, 'release', 'js', 'packages'), 'dir');
+		fs.symlink(path.resolve(__dirname, 'index.release.html'), path.resolve(__dirname, 'release', 'index.html'));
+
+	});
+
+	grunt.loadNpmTasks('grunt-htmlmin');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('default', ['htmlmin', 'cssmin', 'uglify']);
+	grunt.registerTask('default', ['cssmin', 'uglify', 'htmlmin', 'wiring']);
 };

@@ -2,13 +2,13 @@
 
 var app = angular.module('rutosClientApp', ['ngMaterial']);
 
-app.config(function($mdThemingProvider) {
+app.config(['$mdThemingProvider', function($mdThemingProvider) {
 	// $mdThemingProvider.theme('content-dark', 'default').dark();
 	$mdThemingProvider.theme('default')
 		.primaryPalette('indigo')
 		.accentPalette('deep-orange')
 		.warnPalette('red');
-})
+}])
 
 .controller('mainController', ['userService', '$mdDialog', '$mdToast', '$scope', 
 function(userService, $mdDialog, $mdToast, $scope) {
@@ -28,7 +28,7 @@ function(userService, $mdDialog, $mdToast, $scope) {
 				}, output_error);
 		},
 
-		sign_in_controller = function($scope, $mdDialog) {
+		sign_in_controller = ['$scope', '$mdDialog', function($scope, $mdDialog) {
 			$scope.hide = function() {
 				$mdDialog.hide();
 			};
@@ -51,7 +51,7 @@ function(userService, $mdDialog, $mdToast, $scope) {
 					password: digest
 				});
 			}
-		},
+		}],
 
 		toggle_filter = function() {
 			$scope.config.filter_panel_enabled = !$scope.config.filter_panel_enabled;

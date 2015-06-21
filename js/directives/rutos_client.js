@@ -11,7 +11,9 @@ function(scrapeService, $mdDialog) {
 			return colors[index % colors.length];
 		},
 
-		entry_info_controller = function($scope, $mdDialog, id, subber, title, 
+		entry_info_controller = ['$scope', '$mdDialog', 'id', 'subber', 'title',
+				'was_downloaded', 'is_logged_in', 'link',
+				function($scope, $mdDialog, id, subber, title, 
 				was_downloaded, is_logged_in, link) {
 			$scope.entry = {
 				id: id,
@@ -28,7 +30,7 @@ function(scrapeService, $mdDialog) {
 			$scope.cancel = function() {
 				$mdDialog.cancel();
 			}
-		},
+		}],
 
 		show_entry_info = function(id, subber, title, was_downloaded, 
 				is_logged_in ,ev) {
@@ -57,14 +59,14 @@ function(scrapeService, $mdDialog) {
 				});
 		},
 		
-		controller = function($scope, $mdDialog) {
+		controller = ['$scope', '$mdDialog', function($scope, $mdDialog) {
 			$scope.color_from_letter = color_from_letter;
 			$scope.show_entry_info = show_entry_info;				
 
 			scrapeService.all().then(function(data) {
 				$scope.data.scrapes = data;
 			});
-		},
+		}],
 		
 		entry_info_template = {
 			templateUrl: 'views/dialogs/entry_info.html',
