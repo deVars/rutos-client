@@ -32,20 +32,26 @@ module.exports = function(grunt) {
 				removeComments: true
 			},
 			file: {
-				src: 'views/**/*.html',
-				dest: 'release/views/'
+				options: {
+					collapseWhitespace: true,
+				},
+				files: {
+					'release/views/': ['views/**/*.html'],
+					// dest: 'release/views/'	
+				}
 			}
 		},
 		cssmin: {
 			options: {},
 			target: {
 				files: {
-					'release/css/app.min.css': [css/app.css']
+					'release/css/app.min.css': ['css/app.css']
 				}
 			}
 		},
 		uglify: {
 			options: {
+				banner: '/**\n* dv Rutos Client v0.10.0\n* Roseller Velicaria, Jr. <r.velicaria.jr@gmail.com>\n*/\n\n',
 				mangle: true,
 				compress: true
 			},
