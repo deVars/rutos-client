@@ -22,6 +22,11 @@ function(scrapeService, $mdDialog) {
 				is_logged_in: is_logged_in,
 				link: link
 			};
+
+			$scope.download = function() {
+				window.open($scope.entry.link, 'dvScrape_download_window');
+				$mdDialog.hide();
+			};
 			
 			$scope.hide = function() {
 				$mdDialog.hide();
@@ -40,23 +45,23 @@ function(scrapeService, $mdDialog) {
 			scrapeService.get_url(id)
 				.then(function(data) {
 					entry_link = data.url;
-				});
 
-			angular.copy(entry_info_template, entry_info);
-			entry_info.locals = {
-				id: id,
-				subber: subber,
-				title: title,
-				was_downloaded: was_downloaded,
-				is_logged_in: is_logged_in,
-				link: entry_link
-			}
-			entry_info.targetEvent = ev;
-			
-			$mdDialog.show(entry_info)
-				.finally(function() {
-					entry_info = undefined;
-				});
+					angular.copy(entry_info_template, entry_info);
+					entry_info.locals = {
+						id: id,
+						subber: subber,
+						title: title,
+						was_downloaded: was_downloaded,
+						is_logged_in: is_logged_in,
+						link: entry_link
+					}
+					entry_info.targetEvent = ev;
+					
+					$mdDialog.show(entry_info)
+						.finally(function() {
+							entry_info = undefined;
+						});
+				});		
 		},
 		
 		controller = ['$scope', '$mdDialog', function($scope, $mdDialog) {
