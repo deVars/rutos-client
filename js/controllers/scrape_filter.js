@@ -29,7 +29,9 @@ app.controller('ScrapeFilterController',
 
 	$scope.$watch('filter.title', function(newVal, oldVal) {
 		if (angular.isDefined(newVal)) {
-			update_filter($scope.filter);
+			if (newVal.length > 2 || newVal.length == 0) {
+				update_filter($scope.filter);	
+			}
 		}
 	});
 }]);
