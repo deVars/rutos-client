@@ -17,7 +17,7 @@
 		</div>
 	</md-toolbar>
 	<div ng-controller="ScrapeFilterController" layout="row" ng-show="config.filter_panel_enabled">
-		<md-select ng-model="filter.subber" md-on-open="load_subbers()" aria-label="subber" flex="15">
+		<md-select ng-model="filter.subber" md-on-open="load_subbers()" aria-label="subber" flex-sm="45" flex-md="25" flex-gt-md="15">
 			<md-select-label flex>{{filter.subber ? filter.subber : 'filter by subber'}}</md-select-label>
 			<md-option ng-repeat="record in subbers" value="{{record.subber}}">
 				{{record.subber}}
@@ -28,15 +28,15 @@
   			<input ng-model="filter.title">
 		</md-input-container>
 	</div>
-	<md-content layout-padding class="content-space">
-		<md-list>
-			<md-list-item c-class="md-3-line" ng-repeat="scrape in data.scrapes" ng-click="show_entry_info(scrape.id, scrape.subber, scrape.title, scrape.was_downloaded, config.is_logged_in, $event)">
+	<md-content class="content-space">
+		<md-list layout-fill>
+			<md-list-item class="md-3-line" ng-repeat="scrape in data.scrapes" ng-click="show_entry_info(scrape.id, scrape.subber, scrape.title, scrape.was_downloaded, config.is_logged_in, $event)" style="padding: 0 0">
 
 				<md-button md-no-ink class="md-fab push-16-down" style="background-color: {{color_from_letter(scrape.subber.charCodeAt(0))}}">
 					<div class="subber-face white-font">{{scrape.subber.substr(0,1)}}</div>
 				</md-button>
 				
-				<div class="md-list-item-text normal-line-height">
+				<div class="md-list-item-text normal-line-height" flex>
 					<div class="subber-text">{{scrape.subber}}</div>
 					<div class="title-text">{{scrape.title}}</div>
 					<div class="feature-text">
@@ -49,8 +49,8 @@
 				<md-button class="was-downloaded-{{scrape.was_downloaded}} push-30-down" ng-show="is_logged_in" aria-label="download to server">
 					<div class="subber-face"><i class="fa fa-download"></i></div>
 				</md-button>
-
 			</md-list-item>
+			<div class="push-30-down" style="height: 30px"></div>
 		</md-list>
 	</md-content>
 </div>
