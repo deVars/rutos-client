@@ -11,9 +11,9 @@ function(scrapeService, $mdDialog) {
 			return colors[index % colors.length];
 		},
 
-		entry_info_controller = ['$scope', '$mdDialog', 'id', 'subber', 'title',
+		entry_info_controller = ['$scope', '$mdDialog', '$mdToast', 'id', 'subber', 'title',
 				'was_downloaded', 'is_logged_in', 'link',
-				function($scope, $mdDialog, id, subber, title, 
+				function($scope, $mdDialog, $mdToast, id, subber, title, 
 				was_downloaded, is_logged_in, link) {
 			$scope.entry = {
 				id: id,
@@ -28,7 +28,17 @@ function(scrapeService, $mdDialog) {
 				$mdDialog.hide();
 			};
 			
-			$scope.hide = function() {
+			$scope.server_download = function() {
+				scrapeService.request_server_download($scope.entry.id)
+					.then(function() { // success
+						$mdToast.show($mdToast.simple()
+							.position('bottom right')
+							.content('Request sent'));
+					}, function() { // fail
+						$mdToast.show($mdToast.simple()
+							.position('bottom right')
+							.content('Error sending request.  Please see logs.'));
+					})
 				$mdDialog.hide();
 			};
 

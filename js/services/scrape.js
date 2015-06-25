@@ -67,6 +67,24 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 			return deferred.promise;
 		},
 
+		request_server_download = function(id) {
+			var deferred = $q.defer();
+
+			$http.post(base_url + 'scrapes/request/dl/' + id)
+				.success(function(data, status, headers, config) {
+					if (data.success == true) {
+						deferred.resolve(true);
+					} else {
+						deferred.reject(status);
+					}
+				})
+				.error(function(data, status, headers, config){
+					deferred.reject(status);
+				});
+
+			return deferred.promise;
+		},
+
 		get_title = function(title) {
 			return _get({title: title});
 		},
@@ -80,6 +98,7 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 		get_subbers: get_subbers,
 		get_title: get_title,
 		get_url: get_url,
+		request_server_download: request_server_download,
 		all: all
 	};
 }]);

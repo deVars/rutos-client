@@ -41,12 +41,12 @@
 					<div class="title-text">{{scrape.title}}</div>
 					<div class="feature-text">
 						[{{scrape.bit_encoding}}-bit] [{{scrape.resolution}}p] 
-						<span ng-show="is_logged_in" class="was-downloaded-{{scrape.was_downloaded}}">
+						<span ng-show="config.is_logged_in" class="was-downloaded-{{scrape.was_downloaded}}">
 							<i class="fa fa-arrow-circle-down"></i>
 						</span>
 					</div>
 				</div>
-				<md-button class="was-downloaded-{{scrape.was_downloaded}} push-30-down" ng-show="is_logged_in" aria-label="download to server">
+				<md-button class="was-downloaded-{{scrape.was_downloaded}} push-30-down" ng-show="is_logged_in" aria-label="downloaded to server">
 					<div class="subber-face"><i class="fa fa-download"></i></div>
 				</md-button>
 			</md-list-item>
