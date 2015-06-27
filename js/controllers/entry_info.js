@@ -22,11 +22,11 @@ app.controller('entry_info_controller',
 			scrapeService.request_server_download($scope.entry.id)
 				.then(function() { // success
 					$mdToast.show($mdToast.simple()
-						.position('bottom right')
+						.position('top center')
 						.content('Request sent'));
 				}, function() { // fail
 					$mdToast.show($mdToast.simple()
-						.position('bottom right')
+						.position('top center')
 						.content('Error sending request.  Please see logs.'));
 				})
 			$mdDialog.hide();

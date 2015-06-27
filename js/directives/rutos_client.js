@@ -1,6 +1,6 @@
 'use strict';
 
-app.directive('rutosClient', ['scrapeService', '$mdDialog',
+app.directive('rutosClient', ['scrapeService', '$mdDialog', 
 function(scrapeService, $mdDialog) {
 	var color_from_letter = function(index) {
 			var colors = ['#f44336', '#e91e63', '#9c27b0', '#67a3b7',
@@ -38,13 +38,11 @@ function(scrapeService, $mdDialog) {
 				});		
 		},
 		
-		controller = ['$scope', '$mdDialog', function($scope, $mdDialog) {
+		controller = ['$scope', function($scope) {
 			$scope.color_from_letter = color_from_letter;
 			$scope.show_entry_info = show_entry_info;				
 
-			scrapeService.all().then(function(data) {
-				$scope.data.scrapes = data;
-			});
+			$scope.data.scrapes = $scope.main.reload_entries();
 		}],
 		
 		entry_info_template = {
