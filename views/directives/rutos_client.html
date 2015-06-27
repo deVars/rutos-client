@@ -16,7 +16,7 @@
 			</span>
 		</div>
 	</md-toolbar>
-	<div ng-controller="ScrapeFilterController" layout="row" ng-show="config.filter_panel_enabled">
+	<div ng-controller="scrape_filter_controller" layout="row" ng-show="config.filter_panel_enabled">
 		<md-select ng-model="filter.subber" md-on-open="load_subbers()" aria-label="subber" flex-sm="45" flex-md="25" flex-gt-md="15">
 			<md-select-label flex>{{filter.subber ? filter.subber : 'filter by subber'}}</md-select-label>
 			<md-option ng-repeat="record in subbers" value="{{record.subber}}">
