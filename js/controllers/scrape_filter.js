@@ -1,3 +1,5 @@
+'use strict';
+
 app.controller('ScrapeFilterController', 
 	['scrapeService', '$scope', function(scrapeService, $scope) {
 	
