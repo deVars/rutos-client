@@ -1,6 +1,7 @@
 'use strict';
 
 app.factory('scrapeService', ['$http', '$q', function($http, $q) {
+	$http.defaults.headers.common.Accept = 'application/json';
 	var base_url = '/scrapeserv/',
 
 		_get = function(config) {
