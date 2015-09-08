@@ -11,6 +11,15 @@ app.controller('main_controller', ['scrapeService', 'userService', '$mdDialog', 
 				});
 			},
 
+			filter_favorites = function() {
+				scrapeService.favorites().then(function(data) {
+					$scope.data.scrapes = data;
+					$mdToast.show($mdToast.simple()
+						.position('top center')
+						.content('Successfully fetched entries!'));
+				});
+			},
+
 			show_login_dialog = function($scope, ev) {
 				sign_in_dialog_template['targetEvent'] = ev;
 
@@ -41,13 +50,15 @@ app.controller('main_controller', ['scrapeService', 'userService', '$mdDialog', 
 			
 			sign_in_dialog_template = {
 				templateUrl: 'views/dialogs/sign_in.html',
-				controller: 'sign_in_controller'
+				controller: 'sign_in_controller',
+				focusOnOpen: true
 			};
 
 		$scope.main = {
 			show_login_dialog: show_login_dialog,
 			toggle_filter: toggle_filter,
-			reload_entries: reload_entries
+			reload_entries: reload_entries,
+			filter_favorites: filter_favorites
 		};
 
 		$scope.config = {

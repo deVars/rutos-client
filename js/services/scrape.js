@@ -67,6 +67,21 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 			return deferred.promise;
 		},
 
+		get_favorites = function() {
+			var deferred = $q.defer();
+
+			$http.get(base_url + 'scrapes/get/fav')
+				.success(function(data, status, headers, config) {
+					deferred.resolve(data);
+				})
+				.error(function(data, status, headers, config) {
+					status.message = 'error getting favorites';
+					deferred.reject(status);
+				});
+
+			return deferred.promise;
+		},
+
 		request_server_download = function(id) {
 			var deferred = $q.defer();
 
@@ -99,6 +114,7 @@ app.factory('scrapeService', ['$http', '$q', function($http, $q) {
 		get_title: get_title,
 		get_url: get_url,
 		request_server_download: request_server_download,
+		favorites: get_favorites,
 		all: all
 	};
 }]);

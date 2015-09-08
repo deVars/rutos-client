@@ -7,13 +7,16 @@
 				<md-button class="md-icon-button" ng-click="main.reload_entries()" aria-label="reload">
 					<div class="subber-face"><i class="fa fa-refresh"></i></div>
 				</md-button>
+				<md-button class="md-icon-button" ng-show="config.is_logged_in" ng-click="main.filter_favorites()" aria-label="filter">
+					<div class="subber-face"><i class="fa fa-star"></i></div>
+				</md-button>
 				<md-button class="md-icon-button {{config.filter_panel_enabled ? 'md-accent' : ''}}" ng-click="main.toggle_filter()" aria-label="filter">
 					<div class="subber-face"><i class="fa fa-filter"></i></div>
 				</md-button>
 				<md-button class="md-icon-button" ng-show="!config.is_logged_in" ng-click="main.show_login_dialog(this, $event)" aria-label="sign-in">
 					<div class="subber-face"><i class="fa fa-sign-in"></i></div>
 				</md-button>
-				<md-button class="md-icon-button" ng-show="config.is_logged_in" ng-click="main.show_login_dialog(this, $event)" aria-label="sign-in">
+				<md-button class="md-icon-button" ng-show="config.is_logged_in" ng-click="" aria-label="sign-in">
 					<div class="subber-face"><i class="fa fa-sign-out"></i></div>
 				</md-button>
 			</span>

@@ -8,7 +8,7 @@
 		<section layout-padding>
 			<md-input-container>
 				<label>user name</label>
-				<input type="text" ng-model="username"/>
+				<input type="text" tabindex="0" ng-model="username"/>
 			</md-input-container>
 			<md-input-container>
 				<label>password</label>
@@ -17,8 +17,8 @@
 			</md-input-container>
 		</section>
 		<section layout="row" layout-align="end end">
-			<md-button ng-click="cancel()">Cancel</md-button>
-			<md-button class="md-primary" ng-click="signIn()">Sign In</md-button>
+			<md-button ng-click="cancel()" tabindex="1">Cancel</md-button>
+			<md-button class="md-primary" ng-click="signIn()" tabindex="0">Sign In</md-button>
 		</section>
 	</md-content>
 </md-dialog>
